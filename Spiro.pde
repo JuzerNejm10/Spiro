@@ -12,6 +12,7 @@ float trnd = random(0.1, 15);
 int colornd = (int)random(0, 255);
 int colornd2 = (int)random(0, 255);
 float e, zoom;
+
 boolean record=false;
 
 int mls = millis();
@@ -115,7 +116,7 @@ void draw() {
     float thisz = 0 + (radius * cos(radians(t)));
 
     if (lastx != 0) {
-      if (colornd>0&&colornd<40) {
+      if (colornd>=0&&colornd<40) {
         line(thisx, thisy, thisz, lastx, lasty, lastz);
         noFill();
         ellipse(2, 2, 55, 55);

@@ -15,12 +15,7 @@ float e, zoom;
 
 boolean record=false;
 
-int mls = millis();
-int mnt = minute();
-int hr = hour();
-int day = day();
-int mnth = month();
-int year = year();
+String datetime = str(year())+str(month())+str(day())+str(hour())+str(minute())+str(second());
 
 int rotation = 1;
 int x, y;
@@ -50,7 +45,7 @@ void mouseWheel(MouseEvent event) {
 void keyPressed() {
   if (key == 'r' || key == 'R') {
     record = !record;
-    videoExport = new VideoExport(this, "spir_" + day + "." + mnth + "." + year + "." + "_" + hr + mnt + mls + ".mp4");
+    videoExport = new VideoExport(this, "spiro_" + datetime + ".mp4");
     videoExport.startMovie();
     if (key == ESC) {
       videoExport.endMovie();  
@@ -61,7 +56,7 @@ void keyPressed() {
 
 void draw() {
   background(0);
-  if (followCursor==true) {
+  if (followCursor) {
     x=mouseX;
     y=mouseY;
   }
@@ -137,8 +132,8 @@ void draw() {
     lastz = thisz;
   }
 
-  if (record==true) {
-    output = createWriter("params_" + day + "." + mnth + "." + year + "." + "_" + hr + mnt + mls + ".txt");
+  if (record) {
+    output = createWriter("params_" + datetime + ".txt");
     output.println("*****************************");
     output.println("color:" + "\t\t" + "("+colornd+","+colornd2+",255"+")");
     output.println("rotatexrnd:" + "\t" + rotatexrnd);
